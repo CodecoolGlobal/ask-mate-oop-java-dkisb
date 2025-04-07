@@ -1,7 +1,7 @@
 package com.codecool.askmateoop.configuration;
 
-import com.codecool.askmateoop.dao.QuestionsDAO;
-import com.codecool.askmateoop.dao.QuestionsDaoJdbc;
+import com.codecool.askmateoop.dao.model.question.QuestionsDAO;
+import com.codecool.askmateoop.dao.model.question.QuestionsDaoJdbc;
 import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.context.annotation.Bean;
 

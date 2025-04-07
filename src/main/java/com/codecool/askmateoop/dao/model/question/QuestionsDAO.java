@@ -1,6 +1,4 @@
-package com.codecool.askmateoop.dao;
-
-import com.codecool.askmateoop.dao.model.Question;
+package com.codecool.askmateoop.dao.model.question;
 
 import java.util.List;
 
