@@ -5,10 +5,7 @@ import com.codecool.askmateoop.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
@@ -32,6 +29,10 @@ public class UserController {
             boolean isLoggedIn = userService.loginUser(name, password_hash);
             return isLoggedIn ? ResponseEntity.ok(Map.of("success", true)) : new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         }
+    }
 
+    @GetMapping("/{user_id}/points")
+    public int getPoints(@PathVariable int user_id) {
+        return userService.getReliabilityLevel(user_id);
     }
 }

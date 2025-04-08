@@ -26,4 +26,18 @@ public class UserDaoJdbc implements UserDAO {
             return false;
         }
     }
+
+    @Override
+    public int getReliabilityLevel(int id) {
+        String sql = "SELECT COALESCE(reliability_points, 0) from users where id=?";
+        try {
+            return jdbcTemplate.queryForObject(sql, Integer.class, id);
+        } catch (org.springframework.dao.EmptyResultDataAccessException e) {
+            return 0;
+        } catch (Exception e) {
+            System.err.println("Error during getting points: " + e.getMessage());
+            e.printStackTrace();
+            return -1;
+        }
+    }
 }

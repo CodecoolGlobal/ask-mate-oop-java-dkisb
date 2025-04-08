@@ -17,4 +17,8 @@ public class UserService {
     public boolean loginUser(String name, String password) {
         return userDAO.logInUser(name, password);
     }
+
+    public int getReliabilityLevel(int id) {
+        return userDAO.getReliabilityLevel(id);
+    }
 }
