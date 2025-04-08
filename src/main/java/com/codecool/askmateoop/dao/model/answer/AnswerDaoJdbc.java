@@ -7,10 +7,7 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
-import java.sql.Date;
 import java.sql.PreparedStatement;
-import java.sql.Timestamp;
-import java.util.Objects;
 
 @Repository
 public class AnswerDaoJdbc implements AnswerDAO {
@@ -42,5 +39,12 @@ public class AnswerDaoJdbc implements AnswerDAO {
             }
         }
         return -1;
+    }
+
+    @Override
+    public boolean deleteAnswer(int id){
+        String sql = "DELETE FROM answer WHERE id = ?";
+        jdbcTemplate.update(sql, id);
+        return true;
     }
 }

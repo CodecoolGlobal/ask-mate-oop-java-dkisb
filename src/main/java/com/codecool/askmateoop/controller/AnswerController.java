@@ -33,4 +33,9 @@ public class AnswerController {
             return new ResponseEntity<>(-1, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @DeleteMapping("/{id}")
+    public boolean deleteQuestionById(@PathVariable int id) {
+        return answerService.deleteAnswer(id);
+    }
 }

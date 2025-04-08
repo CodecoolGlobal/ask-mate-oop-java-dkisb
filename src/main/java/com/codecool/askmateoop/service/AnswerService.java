@@ -18,4 +18,8 @@ public class AnswerService {
     public int addNewAnswer(NewAnswerDTO answer) {
         return  answerDAO.createNewAnswer(answer);
     }
+
+    public boolean deleteAnswer(int id){
+        return answerDAO.deleteAnswer(id);
+    }
 }
