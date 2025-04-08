@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Locale;
 
 @Service
 public class QuestionService {
@@ -22,8 +23,13 @@ public class QuestionService {
 
     public List<QuestionDTO> getAllQuestions() {
         List<Question> allQuestions = questionsDAO.getAllQuestions();
-        // TODO convert data to QuestionDTO
-        return List.of(new QuestionDTO(1, "Example Title", "Example Description", LocalDateTime.now()));
+        return allQuestions.stream().map(q -> new QuestionDTO(
+                q.title(),
+                q.content(),
+                q.createdAt().atStartOfDay(),
+                q.userId()
+        ))
+                .toList();
     }
 
     public QuestionDTO getQuestionById(int id) {

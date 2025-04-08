@@ -1,4 +1,11 @@
 package com.codecool.askmateoop.dao.model.question;
 
-public record Question(int id, String title, String description) {
-}
+import java.time.LocalDate;
+
+public record Question(
+        int id,
+        String title,
+        String content,
+        LocalDate createdAt,
+        int userId
+) {}
