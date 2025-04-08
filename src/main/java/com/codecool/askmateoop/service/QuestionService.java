@@ -22,6 +22,7 @@ public class QuestionService {
     public List<QuestionDTO> getAllQuestions() {
         List<Question> allQuestions = questionDAO.getAllQuestions();
         return allQuestions.stream().map(q -> new QuestionDTO(
+                q.getId(),
                 q.getTitle(),
                 q.getContent(),
                 q.getCreatedAt().atStartOfDay()
