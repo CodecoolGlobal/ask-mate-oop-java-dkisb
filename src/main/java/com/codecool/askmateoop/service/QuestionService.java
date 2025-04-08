@@ -26,8 +26,7 @@ public class QuestionService {
         return allQuestions.stream().map(q -> new QuestionDTO(
                 q.title(),
                 q.content(),
-                q.createdAt().atStartOfDay(),
-                q.userId()
+                q.createdAt().atStartOfDay()
         ))
                 .toList();
     }

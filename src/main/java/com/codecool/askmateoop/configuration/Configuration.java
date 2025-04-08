@@ -1,5 +1,7 @@
 package com.codecool.askmateoop.configuration;
 
+import com.codecool.askmateoop.dao.model.answer.AnswersDAO;
+import com.codecool.askmateoop.dao.model.answer.AnswersDaoJdbc;
 import com.codecool.askmateoop.dao.model.question.QuestionsDAO;
 import com.codecool.askmateoop.dao.model.question.QuestionsDaoJdbc;
 import org.springframework.boot.SpringBootConfiguration;
@@ -16,6 +18,11 @@ public class Configuration {
     @Bean
     public QuestionsDAO questionsDAO(JdbcTemplate jdbcTemplate) {
         return new QuestionsDaoJdbc(jdbcTemplate);
+    }
+
+    @Bean
+    public AnswersDAO answersDAO(JdbcTemplate jdbcTemplate) {
+        return new AnswersDaoJdbc(jdbcTemplate);
     }
 
 }
