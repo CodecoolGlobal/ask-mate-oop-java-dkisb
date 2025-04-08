@@ -16,12 +16,12 @@ public class Configuration {
 //    private String databaseUrl;
 
     @Bean
-    public QuestionDAO questionsDAO(JdbcTemplate jdbcTemplate) {
+    public QuestionDAO questionDAO(JdbcTemplate jdbcTemplate) {
         return new QuestionDaoJdbc(jdbcTemplate);
     }
 
     @Bean
-    public AnswerDAO answersDAO(JdbcTemplate jdbcTemplate) {
+    public AnswerDAO answerDAO(JdbcTemplate jdbcTemplate) {
         return new AnswerDaoJdbc(jdbcTemplate);
     }
 

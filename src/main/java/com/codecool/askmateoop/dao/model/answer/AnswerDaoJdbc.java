@@ -7,7 +7,9 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
+import java.sql.Date;
 import java.sql.PreparedStatement;
+import java.sql.Timestamp;
 import java.util.Objects;
 
 @Repository
@@ -22,24 +24,24 @@ public class AnswerDaoJdbc implements AnswerDAO {
     }
 
     @Override
-    public int createNewAnswer(NewAnswerDTO newAnswerDTO, int questionId, int userId) {
+    public int createNewAnswer(NewAnswerDTO newAnswerDTO) {
         KeyHolder keyHolder = new GeneratedKeyHolder();
-        String sql = "INSERT INTO answer (question_id, content,user_id, created_at) VALUES (?, ?,?,?)";
+        String sql = "INSERT INTO answer (question_id, content,user_id, created_at) VALUES (?,?,?,?)";
 
         jdbcTemplate.update(connection -> {
             PreparedStatement ps = connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
-            ps.setInt(1,questionId );
+            ps.setInt(1,newAnswerDTO.questionId() );
             ps.setString(2, newAnswerDTO.content());
-            ps.setInt(3, userId);
+            ps.setInt(3, newAnswerDTO.userId());
+            ps.setTimestamp(4, Timestamp.valueOf(newAnswerDTO.createdAt().atStartOfDay()));
             return ps;
         }, keyHolder);
-
-        if(keyHolder.getKeys() != null && !keyHolder.getKeys().isEmpty()){
-            return Objects.requireNonNull(keyHolder.getKey()).intValue();
-        } else {
-            return -1;
+        if (keyHolder.getKeys() != null) {
+            Object idObj = keyHolder.getKeys().get("id");
+            if (idObj != null) {
+                return ((Number) idObj).intValue();
+            }
         }
+        return -1;
     }
-
-
 }

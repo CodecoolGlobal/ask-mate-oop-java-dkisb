@@ -15,7 +15,7 @@ public class AnswerService {
         this.answerDAO = answerDAO;
     }
 
-    public int addNewAnswer(NewAnswerDTO answer, int question_id, int user_id) {
+    public int addNewAnswer(NewAnswerDTO answer) {
         return  answerDAO.createNewAnswer(answer);
     }
 }

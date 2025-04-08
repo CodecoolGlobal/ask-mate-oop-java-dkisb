@@ -22,9 +22,9 @@ public class QuestionService {
     public List<QuestionDTO> getAllQuestions() {
         List<Question> allQuestions = questionDAO.getAllQuestions();
         return allQuestions.stream().map(q -> new QuestionDTO(
-                q.title(),
-                q.content(),
-                q.createdAt().atStartOfDay()
+                q.getTitle(),
+                q.getContent(),
+                q.getCreatedAt().atStartOfDay()
         ))
                 .toList();
     }
