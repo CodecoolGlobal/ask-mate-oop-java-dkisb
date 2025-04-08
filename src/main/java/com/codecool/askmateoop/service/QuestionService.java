@@ -24,17 +24,17 @@ public class QuestionService {
     public List<QuestionDTO> getAllQuestions() {
         List<Question> allQuestions = questionsDAO.getAllQuestions();
         return allQuestions.stream().map(q -> new QuestionDTO(
-                q.title(),
-                q.content(),
-                q.createdAt().atStartOfDay(),
-                q.userId()
+                q.getTitle(),
+                q.getDescription(),
+                q.getDate().atStartOfDay(),
+                q.getUserId()
         ))
                 .toList();
     }
 
     public QuestionDTO getQuestionById(int id) {
-        // TODO
-        throw new UnsupportedOperationException();
+        Question question = questionsDAO.getQuestionById(id);
+        return new QuestionDTO(question.getTitle(), question.getDescription(), question.getDate().atStartOfDay(), question.getUserId());
     }
 
     public boolean deleteQuestionById(int id) {
@@ -42,8 +42,7 @@ public class QuestionService {
         throw new UnsupportedOperationException();
     }
 
-    public int addNewQuestion(NewQuestionDTO question) {
-        // TODO
-        throw new UnsupportedOperationException();
+    public int addNewQuestion(NewQuestionDTO newQuestion) {
+        return questionsDAO.addQuestion(newQuestion);
     }
 }
