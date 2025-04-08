@@ -4,6 +4,8 @@ import com.codecool.askmateoop.dao.model.answer.AnswerDAO;
 import com.codecool.askmateoop.dao.model.answer.AnswerDaoJdbc;
 import com.codecool.askmateoop.dao.model.question.QuestionDAO;
 import com.codecool.askmateoop.dao.model.question.QuestionDaoJdbc;
+import com.codecool.askmateoop.dao.model.user.UserDAO;
+import com.codecool.askmateoop.dao.model.user.UserDaoJdbc;
 import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -25,4 +27,8 @@ public class Configuration {
         return new AnswerDaoJdbc(jdbcTemplate);
     }
 
+    @Bean
+    public UserDAO userDAO(JdbcTemplate jdbcTemplate) {
+        return new UserDaoJdbc(jdbcTemplate);
+    }
 }
