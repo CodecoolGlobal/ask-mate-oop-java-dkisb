@@ -1,4 +1,4 @@
 package com.codecool.askmateoop.controller.dto.user;
 
-public class UserDTO {
+public record UserDTO(String username) {
 }

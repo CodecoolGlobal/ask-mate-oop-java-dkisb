@@ -1,4 +1,4 @@
 package com.codecool.askmateoop.controller.dto.answer;
 
-public class NewAnswerDTO {
+public record NewAnswerDTO(String content) {
 }
