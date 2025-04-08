@@ -1,14 +1,15 @@
 package com.codecool.askmateoop.service;
 
-import com.codecool.askmateoop.controller.dto.NewQuestionDTO;
-import com.codecool.askmateoop.controller.dto.QuestionDTO;
-import com.codecool.askmateoop.dao.QuestionsDAO;
-import com.codecool.askmateoop.dao.model.Question;
+import com.codecool.askmateoop.controller.dto.question.NewQuestionDTO;
+import com.codecool.askmateoop.controller.dto.question.QuestionDTO;
+import com.codecool.askmateoop.dao.model.question.QuestionsDAO;
+import com.codecool.askmateoop.dao.model.question.Question;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Locale;
 
 @Service
 public class QuestionService {
@@ -22,8 +23,13 @@ public class QuestionService {
 
     public List<QuestionDTO> getAllQuestions() {
         List<Question> allQuestions = questionsDAO.getAllQuestions();
-        // TODO convert data to QuestionDTO
-        return List.of(new QuestionDTO(1, "Example Title", "Example Description", LocalDateTime.now()));
+        return allQuestions.stream().map(q -> new QuestionDTO(
+                q.title(),
+                q.content(),
+                q.createdAt().atStartOfDay(),
+                q.userId()
+        ))
+                .toList();
     }
 
     public QuestionDTO getQuestionById(int id) {

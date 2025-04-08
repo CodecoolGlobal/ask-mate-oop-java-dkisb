@@ -1,9 +1,10 @@
 package com.codecool.askmateoop.configuration;
 
-import com.codecool.askmateoop.dao.QuestionsDAO;
-import com.codecool.askmateoop.dao.QuestionsDaoJdbc;
+import com.codecool.askmateoop.dao.model.question.QuestionsDAO;
+import com.codecool.askmateoop.dao.model.question.QuestionsDaoJdbc;
 import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.context.annotation.Bean;
+import org.springframework.jdbc.core.JdbcTemplate;
 
 @SpringBootConfiguration
 public class Configuration {
@@ -13,8 +14,8 @@ public class Configuration {
 //    private String databaseUrl;
 
     @Bean
-    public QuestionsDAO questionsDAO() {
-        return new QuestionsDaoJdbc();
+    public QuestionsDAO questionsDAO(JdbcTemplate jdbcTemplate) {
+        return new QuestionsDaoJdbc(jdbcTemplate);
     }
 
 }
