@@ -1,4 +1,4 @@
 package com.codecool.askmateoop.dao.model.user;
 
-public class UsersJdbc implements UsersDAO{
+public class UserDaoJdbc implements UserDAO {
 }

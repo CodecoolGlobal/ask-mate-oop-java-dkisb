@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 
 @RestController
-@RequestMapping("/api/answer/{question_id}")
+@RequestMapping("/api/answer")
 public class AnswerController {
     private final AnswerService answerService;
 
@@ -18,8 +18,8 @@ public class AnswerController {
         this.answerService = answerService;
     }
 
-    @PostMapping("/")
-    public ResponseEntity<NewAnswerDTO> addNewAnswer(@PathVariable int questionId, @RequestBody NewAnswerDTO answer) {
+    @PostMapping("/{question_id}")
+    public ResponseEntity<NewAnswerDTO> addNewAnswer(@PathVariable("question_id") int questionId, @RequestBody NewAnswerDTO answer) {
         NewAnswerDTO createdAnswer = answerService.addNewAnswer(answer,questionId);
         return new ResponseEntity<>(createdAnswer,HttpStatus.CREATED);
     }

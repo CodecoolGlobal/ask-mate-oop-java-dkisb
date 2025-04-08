@@ -2,6 +2,6 @@ package com.codecool.askmateoop.dao.model.question;
 
 import java.util.List;
 
-public interface QuestionsDAO {
+public interface QuestionDAO {
     List<Question> getAllQuestions();
 }

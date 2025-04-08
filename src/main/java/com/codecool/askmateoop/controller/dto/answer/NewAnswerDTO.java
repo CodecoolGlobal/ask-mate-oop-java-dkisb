@@ -1,4 +1,6 @@
 package com.codecool.askmateoop.controller.dto.answer;
 
-public record NewAnswerDTO(String content) {
+import java.time.LocalDate;
+
+public record NewAnswerDTO(String content,LocalDate createdAt) {
 }
