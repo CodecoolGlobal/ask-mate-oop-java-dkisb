@@ -26,14 +26,13 @@ public class AnswerDaoJdbc implements AnswerDAO {
     @Override
     public int createNewAnswer(NewAnswerDTO newAnswerDTO) {
         KeyHolder keyHolder = new GeneratedKeyHolder();
-        String sql = "INSERT INTO answer (question_id, content,user_id, created_at) VALUES (?,?,?,?)";
+        String sql = "INSERT INTO answer (question_id, content,user_id) VALUES (?,?,?)";
 
         jdbcTemplate.update(connection -> {
             PreparedStatement ps = connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
             ps.setInt(1,newAnswerDTO.questionId() );
             ps.setString(2, newAnswerDTO.content());
             ps.setInt(3, newAnswerDTO.userId());
-            ps.setTimestamp(4, Timestamp.valueOf(newAnswerDTO.createdAt().atStartOfDay()));
             return ps;
         }, keyHolder);
         if (keyHolder.getKeys() != null) {

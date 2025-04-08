@@ -27,6 +27,13 @@ public class QuestionDaoJdbc implements QuestionDAO {
                 rs.getInt("user_id")
         ));
     }
+
+    @Override
+    public boolean deleteQuestion(int id){
+        String sql = "DELETE FROM question WHERE id = ?";
+        jdbcTemplate.update(sql,id);
+        return true;
+    }
 }
 
 
