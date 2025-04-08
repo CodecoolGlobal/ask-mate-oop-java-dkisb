@@ -1,6 +1,18 @@
 package com.codecool.askmateoop.dao.model.user;
 
-import java.util.Date;
 
-public record User(int id, String username, String password, String email, boolean isAdmin, Date createdAt) {
+import java.time.LocalDate;
+
+public class User {
+    private int id;
+    private String username;
+    private String password;
+    private String email;
+    private boolean isAdmin;
+    private LocalDate createdAt;
+    private int reliabilityPoints;
+
+    public int getId() {
+        return id;
+    }
 }

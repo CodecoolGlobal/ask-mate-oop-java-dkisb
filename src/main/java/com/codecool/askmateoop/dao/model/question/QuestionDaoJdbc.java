@@ -7,12 +7,12 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public class QuestionsDaoJdbc implements QuestionsDAO {
+public class QuestionDaoJdbc implements QuestionDAO {
 
     private final JdbcTemplate jdbcTemplate;
 
     @Autowired
-    public QuestionsDaoJdbc(JdbcTemplate jdbcTemplate) {
+    public QuestionDaoJdbc(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 
@@ -26,6 +26,13 @@ public class QuestionsDaoJdbc implements QuestionsDAO {
                 rs.getDate("created_at").toLocalDate(),
                 rs.getInt("user_id")
         ));
+    }
+
+    @Override
+    public boolean deleteQuestion(int id){
+        String sql = "DELETE FROM question WHERE id = ?";
+        jdbcTemplate.update(sql,id);
+        return true;
     }
 }
 
