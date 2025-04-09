@@ -8,6 +8,7 @@ import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
 import java.sql.PreparedStatement;
+import java.util.List;
 
 @Repository
 public class AnswerDaoJdbc implements AnswerDAO {
@@ -19,6 +20,20 @@ public class AnswerDaoJdbc implements AnswerDAO {
     public AnswerDaoJdbc(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
+
+    @Override
+    public List<Answer> getAllAnswersById(int id) {
+        String sql = "SELECT id,user_id,content,created_at, question_id FROM answer WHERE question_id = ?";
+        return jdbcTemplate.query(sql, (rs, rowNum) -> new Answer(
+                rs.getInt("id"),
+                rs.getInt("question_id"),
+                rs.getInt("user_id"),
+                rs.getString("content"),
+                rs.getTimestamp("created_at")
+        ));
+    }
+
+
 
     @Override
     public int createNewAnswer(NewAnswerDTO newAnswerDTO) {

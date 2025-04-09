@@ -22,9 +22,6 @@ public class Question {
     public int getId() {
         return id;
     }
-    public int getUserId() {
-        return userId;
-    }
 
     public String getTitle() {
         return title;
@@ -36,8 +33,5 @@ public class Question {
 
     public Timestamp getCreatedAt() {
         return createdAt;
-    }
-    public void setContent(String content) {
-        this.content = content;
     }
 }
