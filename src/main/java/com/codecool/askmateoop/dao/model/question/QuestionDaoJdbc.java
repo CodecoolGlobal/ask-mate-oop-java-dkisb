@@ -31,8 +31,8 @@ public class QuestionDaoJdbc implements QuestionDAO {
     @Override
     public boolean deleteQuestion(int id){
         String sql = "DELETE FROM question WHERE id = ?";
-        jdbcTemplate.update(sql,id);
-        return true;
+        int affectedRows = jdbcTemplate.update(sql,id);
+        return affectedRows > 0;
     }
 }
 
