@@ -1,5 +1,6 @@
 package com.codecool.askmateoop.dao.model.user;
 
+import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.util.Date;
 
@@ -11,10 +12,10 @@ public class User {
     private String password;
     private String email;
     private boolean isAdmin;
-    private LocalDate createdAt;
+    private Timestamp createdAt;
     private int reliabilityPoints;
 
-    public User(int id, String username, String password, String email, boolean isAdmin, LocalDate createdAt, int reliabilityPoints) {
+    public User(int id, String username, String password, String email, boolean isAdmin, Timestamp createdAt, int reliabilityPoints) {
         this.id = id;
         this.username = username;
         this.password = password;
