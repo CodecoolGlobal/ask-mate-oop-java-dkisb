@@ -31,7 +31,6 @@ public class AnswerController {
     public ResponseEntity<Integer> addNewAnswer(@PathVariable("question_id") int questionId, @RequestBody NewAnswerDTO newAnswerDTO) {
         NewAnswerDTO answerToCreate = new NewAnswerDTO(
                 newAnswerDTO.content(),
-                newAnswerDTO.createdAt(),
                 questionId,
                 newAnswerDTO.userId()
         );
