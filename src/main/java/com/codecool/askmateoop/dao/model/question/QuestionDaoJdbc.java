@@ -28,7 +28,7 @@ public class QuestionDaoJdbc implements QuestionDAO {
                 rs.getInt("id"),
                 rs.getString("title"),
                 rs.getString("content"),
-                rs.getDate("created_at").toLocalDate(),
+                rs.getTimestamp("created_at"),
                 rs.getInt("user_id")
         ));
     }
@@ -40,7 +40,7 @@ public class QuestionDaoJdbc implements QuestionDAO {
                 rs.getInt("id"),
                 rs.getString("title"),
                 rs.getString("content"),
-                rs.getDate("created_at").toLocalDate(),
+                rs.getTimestamp("created_at"),
                 rs.getInt("user_id")
         ));
     }

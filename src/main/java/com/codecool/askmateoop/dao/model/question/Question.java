@@ -1,15 +1,16 @@
 package com.codecool.askmateoop.dao.model.question;
 
-import java.time.LocalDate;
+import java.sql.Timestamp;
+
 
 public class Question {
-    private int id;
-    private String title;
+    private final int id;
+    private final String title;
     private String content;
-    private LocalDate createdAt;
-    private int userId;
+    private final Timestamp createdAt;
+    private final int userId;
 
-    public Question(int id, String title, String content, LocalDate date, int userId) {
+    public Question(int id, String title, String content, Timestamp date, int userId) {
         this.id = id;
         this.title = title;
         this.content = content;
@@ -21,7 +22,7 @@ public class Question {
     public int getId() {
         return id;
     }
-    public int getUser_id() {
+    public int getUserId() {
         return userId;
     }
 
@@ -33,7 +34,7 @@ public class Question {
         return content;
     }
 
-    public LocalDate getCreatedAt() {
+    public Timestamp getCreatedAt() {
         return createdAt;
     }
     public void setContent(String content) {
