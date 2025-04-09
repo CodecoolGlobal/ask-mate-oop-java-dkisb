@@ -7,31 +7,32 @@ public class Question {
     private String title;
     private String content;
     private LocalDate createdAt;
-    private int user_id;
+    private int userId;
 
-    public Question(int id, String title, String content, LocalDate createdAt, int user_id) {
+    public Question(int id, String title, String content, LocalDate date, int userId) {
         this.id = id;
         this.title = title;
         this.content = content;
-        this.createdAt = createdAt;
-        this.user_id = user_id;
+        this.createdAt = date;
+        this.userId = userId;
+
     }
 
     public int getId() {
         return id;
     }
     public int getUser_id() {
-        return user_id;
+        return userId;
     }
+
     public String getTitle() {
         return title;
     }
-    public void setTitle(String title) {
-        this.title = title;
-    }
+
     public String getContent() {
         return content;
     }
+
     public LocalDate getCreatedAt() {
         return createdAt;
     }

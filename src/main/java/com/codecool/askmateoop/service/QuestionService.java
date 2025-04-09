@@ -7,7 +7,9 @@ import com.codecool.askmateoop.dao.model.question.Question;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Locale;
 
 @Service
 public class QuestionService {
@@ -31,16 +33,15 @@ public class QuestionService {
     }
 
     public QuestionDTO getQuestionById(int id) {
-        // TODO
-        throw new UnsupportedOperationException();
+        Question question = questionDAO.getQuestionById(id);
+        return new QuestionDTO(question.getId(), question.getTitle(), question.getContent(), question.getCreatedAt().atStartOfDay());
     }
 
     public boolean deleteQuestionById(int id) {
         return questionDAO.deleteQuestion(id);
     }
 
-    public int addNewQuestion(NewQuestionDTO question) {
-        // TODO
-        throw new UnsupportedOperationException();
+    public int addNewQuestion(NewQuestionDTO newQuestion) {
+        return questionDAO.addQuestion(newQuestion);
     }
 }
