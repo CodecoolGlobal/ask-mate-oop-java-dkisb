@@ -27,14 +27,14 @@ public class QuestionService {
                 q.getId(),
                 q.getTitle(),
                 q.getContent(),
-                q.getCreatedAt().atStartOfDay()
+                q.getCreatedAt()
         ))
                 .toList();
     }
 
     public QuestionDTO getQuestionById(int id) {
         Question question = questionDAO.getQuestionById(id);
-        return new QuestionDTO(question.getId(), question.getTitle(), question.getContent(), question.getCreatedAt().atStartOfDay());
+        return new QuestionDTO(question.getId(), question.getTitle(), question.getContent(), question.getCreatedAt());
     }
 
     public boolean deleteQuestionById(int id) {
