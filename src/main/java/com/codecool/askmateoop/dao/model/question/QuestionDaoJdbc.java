@@ -32,7 +32,6 @@ public class QuestionDaoJdbc implements QuestionDAO {
                 rs.getInt("user_id")
         ));
     }
-
     @Override
     public Question getQuestionById(int id) {
         String sql = "SELECT id,title,content,created_at,user_id FROM question WHERE id=? ";

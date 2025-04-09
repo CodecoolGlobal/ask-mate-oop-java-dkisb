@@ -1,8 +1,16 @@
 package com.codecool.askmateoop.dao.model.user;
 
+import com.codecool.askmateoop.controller.dto.user.NewUserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
+
+import java.sql.PreparedStatement;
+import java.sql.Statement;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 
 @Repository
@@ -39,5 +47,18 @@ public class UserDaoJdbc implements UserDAO {
             e.printStackTrace();
             return -1;
         }
+    }
+
+    @Override
+    public void addUser(NewUserDTO newUser) {
+        String sql = "INSERT INTO users(name, password_hash, email, created_at) VALUES (?, ?, ?, ?)";
+        LocalDateTime now = LocalDateTime.now().withNano(0);
+        Timestamp timestamp = Timestamp.valueOf(now);
+        jdbcTemplate.update(sql,
+                newUser.username(),
+                newUser.password(),
+                newUser.email(),
+                timestamp
+        );
     }
 }

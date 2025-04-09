@@ -36,8 +36,7 @@ public class Question {
     public LocalDate getCreatedAt() {
         return createdAt;
     }
-
-    public int getUserId() {
-        return userId;
+    public void setContent(String content) {
+        this.content = content;
     }
 }
