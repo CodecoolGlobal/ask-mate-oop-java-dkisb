@@ -5,15 +5,15 @@ import java.time.LocalDate;
 public class Question {
     private int id;
     private String title;
-    private String description;
-    private LocalDate date;
+    private String content;
+    private LocalDate createdAt;
     private int userId;
 
-    public Question(int id, String title, String description, LocalDate date, int userId) {
+    public Question(int id, String title, String content, LocalDate date, int userId) {
         this.id = id;
         this.title = title;
-        this.description = description;
-        this.date = date;
+        this.content = content;
+        this.createdAt = date;
         this.userId = userId;
 
     }
@@ -21,17 +21,20 @@ public class Question {
     public int getId() {
         return id;
     }
+    public int getUser_id() {
+        return userId;
+    }
 
     public String getTitle() {
         return title;
     }
 
-    public String getDescription() {
-        return description;
+    public String getContent() {
+        return content;
     }
 
-    public LocalDate getDate() {
-        return date;
+    public LocalDate getCreatedAt() {
+        return createdAt;
     }
 
     public int getUserId() {

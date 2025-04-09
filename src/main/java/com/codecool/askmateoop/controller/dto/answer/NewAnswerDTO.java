@@ -1,4 +1,7 @@
 package com.codecool.askmateoop.controller.dto.answer;
 
-public record NewAnswerDTO(String content) {
+import java.sql.Timestamp;
+import java.time.LocalDate;
+
+public record NewAnswerDTO(String content, int questionId, int userId) {
 }

@@ -2,7 +2,7 @@ package com.codecool.askmateoop.service;
 
 import com.codecool.askmateoop.controller.dto.question.NewQuestionDTO;
 import com.codecool.askmateoop.controller.dto.question.QuestionDTO;
-import com.codecool.askmateoop.dao.model.question.QuestionsDAO;
+import com.codecool.askmateoop.dao.model.question.QuestionDAO;
 import com.codecool.askmateoop.dao.model.question.Question;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,35 +14,34 @@ import java.util.Locale;
 @Service
 public class QuestionService {
 
-    private final QuestionsDAO questionsDAO;
+    private final QuestionDAO questionDAO;
 
     @Autowired
-    public QuestionService(QuestionsDAO questionsDAO) {
-        this.questionsDAO = questionsDAO;
+    public QuestionService(QuestionDAO questionDAO) {
+        this.questionDAO = questionDAO;
     }
 
     public List<QuestionDTO> getAllQuestions() {
-        List<Question> allQuestions = questionsDAO.getAllQuestions();
+        List<Question> allQuestions = questionDAO.getAllQuestions();
         return allQuestions.stream().map(q -> new QuestionDTO(
+                q.getId(),
                 q.getTitle(),
-                q.getDescription(),
-                q.getDate().atStartOfDay(),
-                q.getUserId()
+                q.getContent(),
+                q.getCreatedAt().atStartOfDay()
         ))
                 .toList();
     }
 
     public QuestionDTO getQuestionById(int id) {
-        Question question = questionsDAO.getQuestionById(id);
-        return new QuestionDTO(question.getTitle(), question.getDescription(), question.getDate().atStartOfDay(), question.getUserId());
+        Question question = questionDAO.getQuestionById(id);
+        return new QuestionDTO(question.getId(), question.getTitle(), question.getContent(), question.getCreatedAt().atStartOfDay());
     }
 
     public boolean deleteQuestionById(int id) {
-        // TODO
-        throw new UnsupportedOperationException();
+        return questionDAO.deleteQuestion(id);
     }
 
     public int addNewQuestion(NewQuestionDTO newQuestion) {
-        return questionsDAO.addQuestion(newQuestion);
+        return questionDAO.addQuestion(newQuestion);
     }
 }

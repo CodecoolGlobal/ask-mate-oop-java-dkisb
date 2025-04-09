@@ -7,18 +7,17 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.Statement;
 import java.util.List;
 
 @Repository
-public class QuestionsDaoJdbc implements QuestionsDAO {
+public class QuestionDaoJdbc implements QuestionDAO {
 
     private final JdbcTemplate jdbcTemplate;
 
     @Autowired
-    public QuestionsDaoJdbc(JdbcTemplate jdbcTemplate) {
+    public QuestionDaoJdbc(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 
@@ -72,6 +71,13 @@ public class QuestionsDaoJdbc implements QuestionsDAO {
 
 
 
+
+    @Override
+    public boolean deleteQuestion(int id){
+        String sql = "DELETE FROM question WHERE id = ?";
+        int affectedRows = jdbcTemplate.update(sql,id);
+        return affectedRows > 0;
+    }
 }
 
 
