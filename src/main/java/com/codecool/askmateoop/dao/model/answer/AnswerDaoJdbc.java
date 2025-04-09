@@ -44,7 +44,7 @@ public class AnswerDaoJdbc implements AnswerDAO {
     @Override
     public boolean deleteAnswer(int id){
         String sql = "DELETE FROM answer WHERE id = ?";
-        jdbcTemplate.update(sql, id);
-        return true;
+        int affectedRows = jdbcTemplate.update(sql, id);
+        return affectedRows > 0;
     }
 }
