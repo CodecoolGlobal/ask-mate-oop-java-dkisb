@@ -1,6 +1,6 @@
 package com.codecool.askmateoop.controller.dto.answer;
 
-import java.time.LocalDateTime;
+import java.sql.Timestamp;
 
-public record AnswerDTO(String content, LocalDateTime created) {
+public record AnswerDTO(String content, Timestamp created) {
 }

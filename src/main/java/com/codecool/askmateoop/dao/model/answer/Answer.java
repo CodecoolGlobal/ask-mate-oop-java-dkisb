@@ -11,15 +11,23 @@ public class Answer {
     private int userId;
     private int questionId;
 
-   public Answer(int id, int questionId, int userId, String content) {
+   public Answer(int id, int questionId, int userId, String content, Timestamp createdAt) {
         this.id = id;
         this.questionId = questionId;
         this.userId = userId;
         this.content = content;
+        this.createdAt = createdAt;
     }
 
     public int getId() {
         return id;
+    }
+
+    public String getContent() {
+       return content;
+    }
+    public Timestamp getCreatedAt() {
+       return createdAt;
     }
 
 }
