@@ -1,6 +1,7 @@
 package com.codecool.askmateoop.service;
 
 
+import com.codecool.askmateoop.controller.dto.user.LoginDTO;
 import com.codecool.askmateoop.dao.model.user.UserDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,7 +16,7 @@ public class UserService {
         this.userDAO = userDAO;
     }
 
-    public boolean loginUser(String name, String password) {
+    public LoginDTO loginUser(String name, String password) {
         return userDAO.logInUser(name, password);
     }
 
@@ -23,7 +24,7 @@ public class UserService {
         return userDAO.getReliabilityLevel(id);
     }
 
-    public void addNewUser(NewUserDTO newUser) {
-        userDAO.addUser(newUser);
+    public boolean addNewUser(NewUserDTO newUser) {
+        return userDAO.addUser(newUser);
     }
 }

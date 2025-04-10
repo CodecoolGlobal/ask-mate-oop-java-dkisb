@@ -1,5 +1,6 @@
 package com.codecool.askmateoop.dao.model.user;
 
+import com.codecool.askmateoop.controller.dto.user.LoginDTO;
 import com.codecool.askmateoop.controller.dto.user.NewUserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -24,16 +25,20 @@ public class UserDaoJdbc implements UserDAO {
     }
 
     @Override
-    public boolean logInUser(String username, String password) {
-        String sql = "SELECT COUNT(*) from users where name=? and password_hash=?";
-        try {
-            Integer count = jdbcTemplate.queryForObject(sql, Integer.class, username, password);
-            return count > 0;
-        } catch (Exception e) {
-            System.err.println("Error during login: " + e.getMessage());
-            return false;
-        }
+    public LoginDTO logInUser(String username, String password) {
+        String sql = "SELECT id, name FROM users WHERE name = ? AND password_hash = ?";
+
+        return jdbcTemplate.query(sql, new Object[]{username, password}, rs -> {
+            if (rs.next()) {
+                int userId = rs.getInt("id");
+                String name = rs.getString("name");
+                return new LoginDTO(name, userId);
+            } else {
+                return new LoginDTO(null, 0); // or throw exception, or use Optional
+            }
+        });
     }
+
 
     @Override
     public int getReliabilityLevel(int id) {
@@ -50,15 +55,26 @@ public class UserDaoJdbc implements UserDAO {
     }
 
     @Override
-    public void addUser(NewUserDTO newUser) {
-        String sql = "INSERT INTO users(name, password_hash, email, created_at) VALUES (?, ?, ?, ?)";
+    public boolean addUser(NewUserDTO newUser) {
+        String checkSql = "SELECT COUNT(*) FROM users WHERE name = ?";
+        Integer count = jdbcTemplate.queryForObject(checkSql, Integer.class, newUser.username());
+
+        if (count != null && count > 0) {
+            return true; // user already exists
+        }
+
+        String insertSql = "INSERT INTO users(name, password_hash, email, created_at) VALUES (?, ?, ?, ?)";
         LocalDateTime now = LocalDateTime.now().withNano(0);
         Timestamp timestamp = Timestamp.valueOf(now);
-        jdbcTemplate.update(sql,
+
+        jdbcTemplate.update(insertSql,
                 newUser.username(),
                 newUser.password(),
                 newUser.email(),
                 timestamp
         );
+
+        return false; // user was added
     }
+
 }
