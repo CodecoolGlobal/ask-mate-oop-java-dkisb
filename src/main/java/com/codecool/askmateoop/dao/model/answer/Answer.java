@@ -23,6 +23,10 @@ public class Answer {
         return id;
     }
 
+    public int getUserId() {
+        return userId;
+    }
+
     public String getContent() {
        return content;
     }

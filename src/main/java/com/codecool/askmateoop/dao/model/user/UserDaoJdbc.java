@@ -2,6 +2,7 @@ package com.codecool.askmateoop.dao.model.user;
 
 import com.codecool.askmateoop.controller.dto.user.LoginDTO;
 import com.codecool.askmateoop.controller.dto.user.NewUserDTO;
+import com.codecool.askmateoop.controller.dto.user.PointsDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
@@ -12,6 +13,7 @@ import java.sql.PreparedStatement;
 import java.sql.Statement;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.util.Map;
 
 
 @Repository
@@ -76,5 +78,28 @@ public class UserDaoJdbc implements UserDAO {
 
         return false; // user was added
     }
+
+    @Override
+    public Map<String, String> addNewPoints(PointsDTO pointsDTO) {
+        try {
+            String selectSql = "SELECT reliability_points FROM users WHERE id = ?";
+            Integer currentPoints = jdbcTemplate.queryForObject(selectSql, Integer.class, pointsDTO.userId());
+            if (currentPoints == null) {
+                return Map.of("message", "Something went wrong when points added");
+            }
+            int updatedPoints = currentPoints + pointsDTO.points();
+            String updateSql = "UPDATE users SET reliability_points = ? WHERE id = ?";
+            int rowsAffected = jdbcTemplate.update(updateSql, updatedPoints, pointsDTO.userId());
+            if (rowsAffected > 0) {
+                return Map.of("message", "Points added");
+            } else {
+                return Map.of("message", "Something went wrong when points added");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return Map.of("message", "Something went wrong when points added");
+        }
+    }
+
 
 }

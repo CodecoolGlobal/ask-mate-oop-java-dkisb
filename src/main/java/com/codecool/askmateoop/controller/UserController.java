@@ -4,6 +4,7 @@ package com.codecool.askmateoop.controller;
 import com.codecool.askmateoop.controller.dto.user.LoginDTO;
 import com.codecool.askmateoop.controller.dto.user.LoginRequestDTO;
 import com.codecool.askmateoop.controller.dto.user.NewUserDTO;
+import com.codecool.askmateoop.controller.dto.user.PointsDTO;
 import com.codecool.askmateoop.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -35,5 +36,10 @@ public class UserController {
     @PostMapping("/")
     public boolean addNewUser(@RequestBody NewUserDTO newUser) {
         return userService.addNewUser(newUser);
+    }
+
+    @PatchMapping("/")
+    public Map<String, String> addNewPoints(@RequestBody PointsDTO pointsDTO) {
+        return userService.addNewPoints(pointsDTO);
     }
 }
