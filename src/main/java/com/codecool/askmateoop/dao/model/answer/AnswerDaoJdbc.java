@@ -29,8 +29,8 @@ public class AnswerDaoJdbc implements AnswerDAO {
                 new Object[]{id},
                 (rs, rowNum) -> new Answer(
                         rs.getInt("id"),
-                        rs.getInt("user_id"),
                         rs.getInt("question_id"),
+                        rs.getInt("user_id"),
                         rs.getString("content"),
                         rs.getTimestamp("created_at")
                 )

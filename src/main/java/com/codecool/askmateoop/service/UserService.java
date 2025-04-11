@@ -2,10 +2,13 @@ package com.codecool.askmateoop.service;
 
 
 import com.codecool.askmateoop.controller.dto.user.LoginDTO;
+import com.codecool.askmateoop.controller.dto.user.PointsDTO;
 import com.codecool.askmateoop.dao.model.user.UserDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.codecool.askmateoop.controller.dto.user.NewUserDTO;
+
+import java.util.Map;
 
 @Service
 public class UserService {
@@ -26,5 +29,9 @@ public class UserService {
 
     public boolean addNewUser(NewUserDTO newUser) {
         return userDAO.addUser(newUser);
+    }
+
+    public Map<String, String> addNewPoints(PointsDTO pointsDTO) {
+        return userDAO.addNewPoints(pointsDTO);
     }
 }
