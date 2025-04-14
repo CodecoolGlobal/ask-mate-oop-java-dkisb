@@ -1,9 +1,14 @@
 package com.codecool.askmateoop.dao.model.user;
 
+import com.codecool.askmateoop.controller.dto.user.LoginDTO;
 import com.codecool.askmateoop.controller.dto.user.NewUserDTO;
+import com.codecool.askmateoop.controller.dto.user.PointsDTO;
+
+import java.util.Map;
 
 public interface UserDAO {
-    boolean logInUser(String username, String password);
+    LoginDTO logInUser(String username, String password);
     int getReliabilityLevel(int id);
-    void addUser(NewUserDTO newUser);
+    boolean addUser(NewUserDTO newUser);
+    Map<String, String> addNewPoints(PointsDTO pointsDTO);
 }

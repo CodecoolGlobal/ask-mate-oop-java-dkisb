@@ -23,7 +23,8 @@ public class AnswerService {
         List<Answer> allAnswerForId = answerDAO.getAllAnswersById(questionId);
         return allAnswerForId.stream().map(a -> new AnswerDTO(
                 a.getContent(),
-                a.getCreatedAt()
+                a.getCreatedAt(),
+                a.getUserId()
         )).toList();
     }
 

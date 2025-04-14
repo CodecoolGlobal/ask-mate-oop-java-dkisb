@@ -1,11 +1,12 @@
 
 package com.codecool.askmateoop.controller;
 
+import com.codecool.askmateoop.controller.dto.user.LoginDTO;
+import com.codecool.askmateoop.controller.dto.user.LoginRequestDTO;
 import com.codecool.askmateoop.controller.dto.user.NewUserDTO;
+import com.codecool.askmateoop.controller.dto.user.PointsDTO;
 import com.codecool.askmateoop.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.Map;
 
@@ -20,16 +21,10 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<Map<String, Boolean>> loginUser(@RequestBody Map<String, String> credentials) {
-        String name = credentials.get("name");
-        String password_hash = credentials.get("password_hash");
-        if(name == null || password_hash== null) {
-            return ResponseEntity.badRequest().body(Map.of("failed",false));
-        } else {
-            boolean isLoggedIn = userService.loginUser(name, password_hash);
-            return isLoggedIn ? ResponseEntity.ok(Map.of("success", true)) : new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
-        }
+    public LoginDTO loginUser(@RequestBody LoginRequestDTO loginRequest) {
+        return userService.loginUser(loginRequest.username(), loginRequest.password());
     }
+
 
     @GetMapping("/{user_id}/points")
     public int getPoints(@PathVariable int user_id) {
@@ -37,7 +32,12 @@ public class UserController {
     }
 
     @PostMapping("/")
-    public void addNewUser(@RequestBody NewUserDTO newUser) {
-        userService.addNewUser(newUser);
+    public boolean addNewUser(@RequestBody NewUserDTO newUser) {
+        return userService.addNewUser(newUser);
+    }
+
+    @PatchMapping("/")
+    public Map<String, String> addNewPoints(@RequestBody PointsDTO pointsDTO) {
+        return userService.addNewPoints(pointsDTO);
     }
 }
