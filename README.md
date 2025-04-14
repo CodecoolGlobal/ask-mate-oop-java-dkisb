@@ -1,14 +1,5 @@
-# ask-mate-oop-backend
-<!-- Improved compatibility of back to top link: See: https://github.com/othneildrew/Best-README-Template/pull/73 -->
+# ask-mate-backend
 <a id="readme-top"></a>
-<!--
-*** Thanks for checking out the Best-README-Template. If you have a suggestion
-*** that would make this better, please fork the repo and create a pull request
-*** or simply open an issue with the tag "enhancement".
-*** Don't forget to give the project a star!
-*** Thanks again! Now go create something AMAZING! :D
--->
-
 
 <!-- TABLE OF CONTENTS -->
 <details>
@@ -47,8 +38,8 @@ delivering a dynamic question-and-answer platform. Designed to enable users to p
 
 ### Built With
 
-* [![Java] [Java]][Java-url]
-* [![Spring boot] [Spring Boot]] [Spring-url]
+* [![Java][Java]][Java-url]
+* [![Spring boot][Spring Boot]][Spring-url]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -135,7 +126,7 @@ Don't forget to give the project a star! Thanks again!
 
 Döme Marcell Kisbalázs - domekisb@gmail.com
 
-Project Link: [https://github.com/github_username/repo_name](https://github.com/github_username/repo_name)
+Project Link: [https://github.com/CodecoolGlobal/ask-mate-oop-java-dkisb](https://github.com/CodecoolGlobal/ask-mate-oop-java-dkisb)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
